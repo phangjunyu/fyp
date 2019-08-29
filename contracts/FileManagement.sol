@@ -8,7 +8,11 @@ contract FileManagement {
     mapping (address => uint[]) usersToFiles;
     mapping (uint => File) fileDirectory;
     enum Permissions {Owner, Write, Read}
-    mapping (address => Permissions) filePermissions;
+    struct Permission {
+        Permissions permission;
+        uint expiryTime; //0 means permission persists infinitely
+    }
+    mapping (address => Permission) filePermissions;
     string[] history;
     address[] users;
     
@@ -18,9 +22,12 @@ contract FileManagement {
         string location;
         address[] users;
         string[] history;
-        mapping (address=>Permissions) permissions;
+        mapping (address=>Permission) permissions;
         mapping (address=>uint) permissionsExpiry;
     }
+    
+    File file;
+    File[] files;
     
     event NewFile(address indexed _owner, uint indexed _fileHash);
     event ReadPermissionGranted(address indexed _user, uint indexed _fileHash, uint duration);
@@ -29,35 +36,44 @@ contract FileManagement {
     event FileUpdated(address indexed _user, uint indexed _fileHash, uint new_fileHash);
 
     modifier isOwner(uint _fileHash){
-        require(fileDirectory[_fileHash].permissions[msg.sender] == Permissions.Owner);
+        Permission memory _permission = fileDirectory[_fileHash].permissions[msg.sender];
+        require(_permission.permission == Permissions.Owner);
+        require(_permission.expiryTime == 0 || _permission.expiryTime - now > 0);
         _;
     }
     modifier isWriter(uint _fileHash){
-        require(fileDirectory[_fileHash].permissions[msg.sender] == Permissions.Write ||
-            fileDirectory[_fileHash].permissions[msg.sender] == Permissions.Owner
+        Permission memory _permission = fileDirectory[_fileHash].permissions[msg.sender];
+        require(_permission.permission == Permissions.Write ||
+            _permission.permission == Permissions.Owner
         );
+        require(_permission.expiryTime == 0 || _permission.expiryTime - now > 0);
         _;
     }
     modifier isReader(uint _fileHash){
-        
-        require(fileDirectory[_fileHash].permissions[msg.sender] == Permissions.Read || 
-            fileDirectory[_fileHash].permissions[msg.sender] == Permissions.Write ||
-            fileDirectory[_fileHash].permissions[msg.sender] == Permissions.Owner
+       Permission memory _permission = fileDirectory[_fileHash].permissions[msg.sender];
+        require( _permission.permission == Permissions.Read ||
+            _permission.permission == Permissions.Write ||
+            _permission.permission == Permissions.Owner
+           
         );
+        require(_permission.expiryTime == 0 || _permission.expiryTime - now > 0);
         _;
     }
 
-    function newFile(uint _fileHash, string calldata location) external {
+    function newFile(uint _fileHash, string calldata _location) external {
         //initialize the filePermissions mapping
-        mapping(address => Permissions) storage _filePermissions = filePermissions;
-        _filePermissions[msg.sender] = Permissions.Owner;
+        mapping(address => Permission) storage _filePermissions = filePermissions;
+        _filePermissions[msg.sender].permission = Permissions.Owner;
+        _filePermissions[msg.sender].expiryTime = 0;
         //initialize history array
         string[] storage _history = history;
         //initialize users array and add in owner
         address[] storage _users = users;
         users.push(msg.sender);
-
-        File memory file = File(_fileHash, 0, location, _users, _history);
+        
+        // created in memory
+        file = File(_fileHash,0,_location,_users,_history);
+        file.permissions[msg.sender] = Permission(Permissions.Owner, 0);
         fileDirectory[_fileHash] = file;
         usersToFiles[msg.sender].push(_fileHash);
         
@@ -65,27 +81,40 @@ contract FileManagement {
     }
 
     //
-    function setReadPermissions(uint _fileHash, address[] calldata _users, uint duration) external isOwner(_fileHash) {
+    function setReadPermissions(uint _fileHash, address[] calldata _users, uint _duration) external isOwner(_fileHash) {
         for (uint i = 0; i < _users.length; i++){
-            fileDirectory[_fileHash].permissions[_users[i]] = Permissions.Read;
-            fileDirectory[_fileHash].permissionsExpiry[_users[i]] = now + duration;
-            emit ReadPermissionGranted(_users[i], _fileHash, duration);
+            if (fileDirectory[_fileHash].permissions[_users[i]].expiryTime < now){
+                fileDirectory[_fileHash].users.push(_users[i]);
+            }
+            uint _expiryTime = now + _duration;
+            fileDirectory[_fileHash].permissions[_users[i]].permission = Permissions.Read;
+            fileDirectory[_fileHash].permissions[_users[i]].expiryTime = _expiryTime;
+            
+            emit ReadPermissionGranted(_users[i], _fileHash, _expiryTime);
         }
     }
 
-    function setWritePermissions(uint _fileHash, address[] calldata  _users, uint duration) external isOwner(_fileHash){
+    function setWritePermissions(uint _fileHash, address[] calldata  _users, uint _duration) external isOwner(_fileHash){
         for (uint i = 0; i < _users.length; i++){
-            fileDirectory[_fileHash].permissions[_users[i]] = Permissions.Write;
-            fileDirectory[_fileHash].permissionsExpiry[_users[i]] = now + duration;
-            emit WritePermissionGranted(_users[i], _fileHash, duration);
+            if (fileDirectory[_fileHash].permissions[_users[i]].expiryTime < now){
+                fileDirectory[_fileHash].users.push(_users[i]);
+            }
+            uint _expiryTime = now + _duration;
+            fileDirectory[_fileHash].permissions[_users[i]].permission = Permissions.Write;
+            fileDirectory[_fileHash].permissions[_users[i]].expiryTime = _expiryTime;
+            emit ReadPermissionGranted(_users[i], _fileHash, _expiryTime);
         }
     }
 
-    function setOwnerPermissions(uint _fileHash, address[] calldata _users, uint duration) external isOwner(_fileHash){
+    function setOwnerPermissions(uint _fileHash, address[] calldata _users, uint _duration) external isOwner(_fileHash){
         for (uint i = 0; i < _users.length; i++){
-            fileDirectory[_fileHash].permissions[_users[i]] = Permissions.Owner;
-            fileDirectory[_fileHash].permissionsExpiry[_users[i]] = now + duration;
-            emit OwnerPermissionGranted(_users[i], _fileHash, duration);
+            if (fileDirectory[_fileHash].permissions[_users[i]].expiryTime < now){
+                fileDirectory[_fileHash].users.push(_users[i]);
+            }
+            uint _expiryTime = now + _duration;
+            fileDirectory[_fileHash].permissions[_users[i]].permission = Permissions.Owner;
+            fileDirectory[_fileHash].permissions[_users[i]].expiryTime = _expiryTime;
+            emit ReadPermissionGranted(_users[i], _fileHash, _expiryTime);
         }
     }
 
@@ -119,7 +148,7 @@ contract FileManagement {
     }
 
     function viewFilePermissionsForUser(uint _fileHash, address _user) external view isReader(_fileHash) returns (Permissions){
-        return fileDirectory[_fileHash].permissions[_user];
+        return fileDirectory[_fileHash].permissions[_user].permission;
     }
 
     function verifyDocument(uint _fileHash) external view isReader(_fileHash){
