@@ -1,0 +1,20 @@
+1. Finish FYP1155.sol
+
+2. Host something on IPFS
+
+3. Run a demonstrable result
+
+4. Set up Unit Tests showing creation of Token, linking of URI, transferring from A to B to C to D 
+with A being Creator (Owner), B being Write-Only, C being Read-Only, and D being Receiver (Owner)
+
+5. Re-do above Unit Test with D allowing C to be Write-Only and check that delegate Access function works
+
+6. Set up FrontEnd dashboard with MetaMask first
+
+7. Email Sourav (ask about frontend or privacy preserving)
+
+8. Start writing Report
+
+9. Make beautiful frontend
+
+10. Take a break

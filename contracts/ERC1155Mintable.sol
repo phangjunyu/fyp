@@ -1,12 +1,12 @@
 pragma solidity ^0.5.0;
 
-import "./TokenCore.sol";
+import "./ERC1155.sol";
 
 /**
     @dev Mintable form of ERC1155
     Shows how easy it is to mint new items.
 */
-contract TokenCoreMintable is TokenCore {
+contract ERC1155Mintable is ERC1155 {
 
     bytes4 constant private INTERFACE_SIGNATURE_URI = 0x0e89341c;
 
