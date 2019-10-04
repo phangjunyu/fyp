@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "./Common.sol";
+import "./Util/Common.sol";
 import "./IERC1155TokenReceiver.sol";
 
 // Contract to test safe transfer behavior.

@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 import "./DelegatesStorage.sol";
-import "../../Common.sol";
+import "../../Util/Common.sol";
 import "../../IERC1155TokenReceiver.sol";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
