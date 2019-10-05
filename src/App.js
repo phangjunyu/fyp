@@ -1,24 +1,19 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
-import {
-  Box,
-  Button,
-  Heading,
-  Text
-} from 'rimble-ui';
+import Menu from "./components/menu";
 
 function App() {
   return (
-    <div>
-      <Box>
-        <Heading>Your Heading</Heading>
-        <Text>Some of text of yours here</Text>
-        <Button> click me! </Button>
-      </Box>
-    </div>
+    <React.Fragment>
+      <main className="container">
+        <Menu
+        //whatever props
+        />
+      </main>
+    </React.Fragment>
   );
 }
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Menu />, rootElement);
 
 export default App;
