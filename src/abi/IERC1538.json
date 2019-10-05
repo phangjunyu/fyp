@@ -1,0 +1,721 @@
+{
+  "contractName": "IERC1538",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "CommitMessage",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "functionId",
+          "type": "bytes4"
+        },
+        {
+          "indexed": true,
+          "name": "oldDelegate",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newDelegate",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "functionSignature",
+          "type": "string"
+        }
+      ],
+      "name": "FunctionUpdate",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_delegate",
+          "type": "address"
+        },
+        {
+          "name": "_functionSignatures",
+          "type": "string"
+        },
+        {
+          "name": "_commitMessage",
+          "type": "string"
+        }
+      ],
+      "name": "updateContract",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_delegate\",\"type\":\"address\"},{\"name\":\"_functionSignatures\",\"type\":\"string\"},{\"name\":\"_commitMessage\",\"type\":\"string\"}],\"name\":\"updateContract\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"message\",\"type\":\"string\"}],\"name\":\"CommitMessage\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"functionId\",\"type\":\"bytes4\"},{\"indexed\":true,\"name\":\"oldDelegate\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newDelegate\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"functionSignature\",\"type\":\"string\"}],\"name\":\"FunctionUpdate\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{\"updateContract(address,string,string)\":{\"notice\":\"This message is passed to the CommitMessage event.\"}},\"notice\":\"Note: the ERC-165 identifier for this interface is 0x61455567\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/ProxyReceiver/IERC1538.sol\":\"IERC1538\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/ProxyReceiver/IERC1538.sol\":{\"keccak256\":\"0x88b007d8ecf96e715be5d0933601682f0a52b1b88f7d0edaee7bd1958c413e03\",\"urls\":[\"bzzr://845d7292dc414f24f157f1377f90311f86471a6a45d4a8830a77a33f9a6285c2\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\r\n\r\n/// @title ERC1538 Transparent Contract Standard\r\n/// @dev Required interface\r\n///  Note: the ERC-165 identifier for this interface is 0x61455567\r\ninterface IERC1538 {\r\n\r\n    /// @dev This emits when one or a set of functions are updated in a transparent contract.\r\n    ///  The message string should give a short description of the change and why\r\n    ///  the change was made.\r\n    event CommitMessage(string message);\r\n\r\n    /// @dev This emits for each function that is updated in a transparent contract.\r\n    ///  functionId is the bytes4 of the keccak256 of the function signature.\r\n    ///  oldDelegate is the delegate contract address of the old delegate contract if\r\n    ///  the function is being replaced or removed.\r\n    ///  oldDelegate is the zero value address(0) if a function is being added for the\r\n    ///  first time.\r\n    ///  newDelegate is the delegate contract address of the new delegate contract if\r\n    ///  the function is being added for the first time or if the function is being\r\n    ///  replaced.\r\n    ///  newDelegate is the zero value address(0) if the function is being removed.\r\n    event FunctionUpdate(bytes4 indexed functionId, address indexed oldDelegate, address indexed newDelegate, string functionSignature);\r\n\r\n    /// @notice Updates functions in a transparent contract.\r\n    /// @dev If the value of _delegate is zero then the functions specified\r\n    ///  in _functionSignatures are removed.\r\n    ///  If the value of _delegate is a delegate contract address then the functions\r\n    ///  specified in _functionSignatures will be delegated to that address.\r\n    /// @param _delegate The address of a delegate contract to delegate to or zero\r\n    ///        to remove functions.\r\n    /// @param _functionSignatures A list of function signatures listed one after the other\r\n    /// @param _commitMessage A short description of the change and why it is made\r\n    ///        This message is passed to the CommitMessage event.\r\n    function updateContract(address _delegate, string calldata _functionSignatures, string calldata _commitMessage) external;\r\n}\r\n",
+  "sourcePath": "C:\\Users\\phangjunyu\\Desktop\\fyp\\solidity\\contracts\\ProxyReceiver\\IERC1538.sol",
+  "ast": {
+    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/ProxyReceiver/IERC1538.sol",
+    "exportedSymbols": {
+      "IERC1538": [
+        2555
+      ]
+    },
+    "id": 2556,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2531,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:13"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "Note: the ERC-165 identifier for this interface is 0x61455567",
+        "fullyImplemented": false,
+        "id": 2555,
+        "linearizedBaseContracts": [
+          2555
+        ],
+        "name": "IERC1538",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": "the change was made.",
+            "id": 2535,
+            "name": "CommitMessage",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2534,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2533,
+                  "indexed": false,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2535,
+                  "src": "431:14:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2532,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "431:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "430:16:13"
+            },
+            "src": "411:36:13"
+          },
+          {
+            "anonymous": false,
+            "documentation": "newDelegate is the zero value address(0) if the function is being removed.",
+            "id": 2545,
+            "name": "FunctionUpdate",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2544,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2537,
+                  "indexed": true,
+                  "name": "functionId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2545,
+                  "src": "1168:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 2536,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1168:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2539,
+                  "indexed": true,
+                  "name": "oldDelegate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2545,
+                  "src": "1195:27:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2538,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1195:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2541,
+                  "indexed": true,
+                  "name": "newDelegate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2545,
+                  "src": "1224:27:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2540,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1224:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2543,
+                  "indexed": false,
+                  "name": "functionSignature",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2545,
+                  "src": "1253:24:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2542,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1253:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1167:111:13"
+            },
+            "src": "1147:132:13"
+          },
+          {
+            "body": null,
+            "documentation": "This message is passed to the CommitMessage event.",
+            "id": 2554,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2552,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2547,
+                  "name": "_delegate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2554,
+                  "src": "2025:17:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2546,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2025:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2549,
+                  "name": "_functionSignatures",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2554,
+                  "src": "2044:35:13",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2548,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2044:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2551,
+                  "name": "_commitMessage",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2554,
+                  "src": "2081:30:13",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2550,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2081:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2024:88:13"
+            },
+            "returnParameters": {
+              "id": 2553,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2121:0:13"
+            },
+            "scope": 2555,
+            "src": "2001:121:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2556,
+        "src": "174:1951:13"
+      }
+    ],
+    "src": "0:2127:13"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/ProxyReceiver/IERC1538.sol",
+    "exportedSymbols": {
+      "IERC1538": [
+        2555
+      ]
+    },
+    "id": 2556,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2531,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:13"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "Note: the ERC-165 identifier for this interface is 0x61455567",
+        "fullyImplemented": false,
+        "id": 2555,
+        "linearizedBaseContracts": [
+          2555
+        ],
+        "name": "IERC1538",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": "the change was made.",
+            "id": 2535,
+            "name": "CommitMessage",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2534,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2533,
+                  "indexed": false,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2535,
+                  "src": "431:14:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2532,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "431:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "430:16:13"
+            },
+            "src": "411:36:13"
+          },
+          {
+            "anonymous": false,
+            "documentation": "newDelegate is the zero value address(0) if the function is being removed.",
+            "id": 2545,
+            "name": "FunctionUpdate",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 2544,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2537,
+                  "indexed": true,
+                  "name": "functionId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2545,
+                  "src": "1168:25:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 2536,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1168:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2539,
+                  "indexed": true,
+                  "name": "oldDelegate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2545,
+                  "src": "1195:27:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2538,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1195:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2541,
+                  "indexed": true,
+                  "name": "newDelegate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2545,
+                  "src": "1224:27:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2540,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1224:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2543,
+                  "indexed": false,
+                  "name": "functionSignature",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2545,
+                  "src": "1253:24:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2542,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1253:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1167:111:13"
+            },
+            "src": "1147:132:13"
+          },
+          {
+            "body": null,
+            "documentation": "This message is passed to the CommitMessage event.",
+            "id": 2554,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateContract",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2552,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2547,
+                  "name": "_delegate",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2554,
+                  "src": "2025:17:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2546,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2025:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2549,
+                  "name": "_functionSignatures",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2554,
+                  "src": "2044:35:13",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2548,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2044:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2551,
+                  "name": "_commitMessage",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2554,
+                  "src": "2081:30:13",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 2550,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2081:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2024:88:13"
+            },
+            "returnParameters": {
+              "id": 2553,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2121:0:13"
+            },
+            "scope": 2555,
+            "src": "2001:121:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 2556,
+        "src": "174:1951:13"
+      }
+    ],
+    "src": "0:2127:13"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.16",
+  "updatedAt": "2019-10-05T18:22:59.894Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {
+      "updateContract(address,string,string)": {
+        "notice": "This message is passed to the CommitMessage event."
+      }
+    },
+    "notice": "Note: the ERC-165 identifier for this interface is 0x61455567"
+  }
+}

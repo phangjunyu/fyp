@@ -8,13 +8,19 @@
   "dependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/polyfill": "^7.4.0",
+    "@truffle/contract": "^4.0.35",
+    "antd": "^3.23.5",
+    "babel-plugin-import": "^1.12.2",
     "bignumber.js": "^9.0.0",
     "mocha": "^6.2.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
     "rimble-ui": "^0.10.0",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "truffle": "^5.0.39",
+    "truffle-contract": "^4.0.31",
+    "web3": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

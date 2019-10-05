@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Menu extends Component {
+class TokenInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -8,10 +8,10 @@ class Menu extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Hello World!</h1>
+        <h1>TokenInfo</h1>
       </React.Fragment>
     );
   }
 }
 
-export default Menu;
+export default TokenInfo;
