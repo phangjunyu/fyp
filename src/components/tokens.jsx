@@ -7,6 +7,10 @@ import {
 } from "@drizzle/react-components";
 
 class Tokens extends Component {
+  renderAccountNumber() {
+    return <AccountData accountIndex={0} units="ether" precision={3} />;
+  }
+
   state = {};
   render() {
     return (
