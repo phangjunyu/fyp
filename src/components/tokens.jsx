@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import { Card, Statistic, Row, Col, Button } from "antd";
+import {
+  AccountData,
+  ContractData,
+  ContractForm
+} from "@drizzle/react-components";
 
 class Tokens extends Component {
   state = {};
@@ -18,10 +23,8 @@ class Tokens extends Component {
               }
             >
               <Col span={12}>
-                <Statistic
-                  title="Your Account Number"
-                  value={this.props.account}
-                />
+                <Statistic title="Your Account Number" />
+                <AccountData accountIndex={0} units="ether" precision={3} />
               </Col>
               <Col span={12}>
                 <Statistic
