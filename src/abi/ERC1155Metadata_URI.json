@@ -21,15 +21,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"uri\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"uri(uint256)\":{\"details\":\"URIs are defined in RFC 3986.\\r The URI may point to a JSON file that conforms to the \\\"ERC-1155 Metadata URI JSON Schema\\\".\\r\",\"return\":\"URI string\\r\"}}},\"userdoc\":{\"methods\":{\"uri(uint256)\":{\"notice\":\"A distinct Uniform Resource Identifier (URI) for a given token.\\r\"}},\"notice\":\"Note: The ERC-165 identifier for this interface is 0x0e89341c.\\r\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/IERC1155Metadata.sol\":\"ERC1155Metadata_URI\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/IERC1155Metadata.sol\":{\"keccak256\":\"0x71a3baf368002e9c644b747d3c66d2f4dd408760725efefb9ec301800017e08c\",\"urls\":[\"bzzr://975ccedeedfd922e58b15579ddbf745878d919bdc15b5506f1cfbf2f2fd5ab2c\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"uri\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"uri(uint256)\":{\"details\":\"URIs are defined in RFC 3986.\\r The URI may point to a JSON file that conforms to the \\\"ERC-1155 Metadata URI JSON Schema\\\".\\r\",\"return\":\"URI string\\r\"}}},\"userdoc\":{\"methods\":{\"uri(uint256)\":{\"notice\":\"A distinct Uniform Resource Identifier (URI) for a given token.\\r\"}},\"notice\":\"Note: The ERC-165 identifier for this interface is 0x0e89341c.\\r\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/desktop/fyp/solidity/contracts/IERC1155Metadata.sol\":\"ERC1155Metadata_URI\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/desktop/fyp/solidity/contracts/IERC1155Metadata.sol\":{\"keccak256\":\"0x71a3baf368002e9c644b747d3c66d2f4dd408760725efefb9ec301800017e08c\",\"urls\":[\"bzzr://975ccedeedfd922e58b15579ddbf745878d919bdc15b5506f1cfbf2f2fd5ab2c\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\r\n\r\n/**\r\n    Note: The ERC-165 identifier for this interface is 0x0e89341c.\r\n*/\r\ninterface ERC1155Metadata_URI {\r\n    /**\r\n        @notice A distinct Uniform Resource Identifier (URI) for a given token.\r\n        @dev URIs are defined in RFC 3986.\r\n        The URI may point to a JSON file that conforms to the \"ERC-1155 Metadata URI JSON Schema\".\r\n        @return URI string\r\n    */\r\n    function uri(uint256 _id) external view returns (string memory);\r\n}\r\n",
-  "sourcePath": "C:/Users/phangjunyu/Desktop/fyp/solidity/contracts/IERC1155Metadata.sol",
+  "sourcePath": "C:/Users/phangjunyu/desktop/fyp/solidity/contracts/IERC1155Metadata.sol",
   "ast": {
-    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/IERC1155Metadata.sol",
+    "absolutePath": "/C/Users/phangjunyu/desktop/fyp/solidity/contracts/IERC1155Metadata.sol",
     "exportedSymbols": {
       "ERC1155Metadata_URI": [
         2116
@@ -151,7 +151,7 @@
     "src": "0:480:7"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/IERC1155Metadata.sol",
+    "absolutePath": "/C/Users/phangjunyu/desktop/fyp/solidity/contracts/IERC1155Metadata.sol",
     "exportedSymbols": {
       "ERC1155Metadata_URI": [
         2116
@@ -278,7 +278,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-05T18:22:59.878Z",
+  "updatedAt": "2019-10-07T07:12:16.517Z",
   "devdoc": {
     "methods": {
       "uri(uint256)": {

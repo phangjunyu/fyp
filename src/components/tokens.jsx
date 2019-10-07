@@ -1,51 +1,69 @@
 import React, { Component } from "react";
-import { Card, Statistic, Row, Col, Button } from "antd";
+import { Card, Statistic, Row, Col, Button, Input } from "antd";
 import {
   AccountData,
   ContractData,
   ContractForm
 } from "@drizzle/react-components";
+import { drizzleConnect } from "@drizzle/react-plugin";
 
 class Tokens extends Component {
-  renderAccountNumber() {
-    return <AccountData accountIndex={0} units="ether" precision={3} />;
-  }
-
   state = {};
   render() {
+    console.log(this.props);
     return (
-      <div style={{ background: "#ECECEC", padding: "30px" }}>
-        <Row gutter={16}>
-          <Col span={12}>
-            <Card
-              title="Tokens Owned"
-              bordered={false}
-              extra={
-                <Button type="primary" style={{ backgroundColor: "green" }}>
-                  Create New Token
-                </Button>
-              }
-            >
-              <Col span={12}>
-                <Statistic title="Your Account Number" />
-                <AccountData accountIndex={0} units="ether" precision={3} />
-              </Col>
-              <Col span={12}>
+      <div style={{ background: "#000000", padding: "30px" }}>
+        <Row>
+          <Card
+            title="Tokens Owned"
+            bordered={false}
+            extra={
+              <Button type="primary" style={{ backgroundColor: "orange" }}>
+                Change Account
+              </Button>
+            }
+          >
+            <Row gutter={16}>
+              <Col span={16}>
                 <Statistic
-                  title="Account Balance (CNY)"
-                  value={112893}
+                  title="Your Account Number"
+                  value={this.props.accounts[0]}
+                  valueStyle={{
+                    fontSize: "1em"
+                  }}
+                />
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={16}>
+                <Statistic
+                  title="Account Balance (Ether)"
+                  value={changeWeiToEther(
+                    this.props.accountBalances[this.props.accounts[0]]
+                  )}
+                  valueStyle={{
+                    fontSize: "1em"
+                  }}
                   precision={2}
                 />
-                <Button style={{ marginTop: 16 }} type="primary">
-                  Recharge
-                </Button>
               </Col>
-            </Card>
-          </Col>
+            </Row>
+          </Card>
         </Row>
       </div>
     );
   }
 }
 
-export default Tokens;
+function changeWeiToEther(amount) {
+  return amount / 10 ** 18;
+}
+
+const mapStateToProps = state => {
+  return {
+    accounts: state.accounts,
+    accountBalances: state.accountBalances
+  };
+};
+
+export default drizzleConnect(Tokens, mapStateToProps);

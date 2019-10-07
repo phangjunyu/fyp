@@ -4,8 +4,9 @@ import { DrizzleProvider } from "@drizzle/react-plugin";
 import { LoadingContainer } from "@drizzle/react-components";
 import drizzleOptions from "./drizzleOptions";
 
+import Header from "./components/header";
 import Tokens from "./components/tokens";
-import SearchBar from "./components/searchBar";
+import SearchAndCreate from "./components/searchAndCreate";
 import TokenInfo from "./components/tokenInfo";
 
 class App extends Component {
@@ -19,8 +20,9 @@ class App extends Component {
       <DrizzleProvider options={drizzleOptions}>
         <LoadingContainer>
           <main className="container">
+            <Header />
             <Tokens />
-            <SearchBar />
+            <SearchAndCreate />
             <TokenInfo />
           </main>
         </LoadingContainer>

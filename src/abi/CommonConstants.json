@@ -1,15 +1,15 @@
 {
   "contractName": "CommonConstants",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"Note: Simple contract to use as base for const vals\\r\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/Util/Common.sol\":\"CommonConstants\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/Util/Common.sol\":{\"keccak256\":\"0x5982dbc53c25204f99368558499ff17b5c2777877d726be68b47a78edd52f1f3\",\"urls\":[\"bzzr://636020863d4c1143193655048501922a952ddf92865bd747dbcdaf9f1929c174\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820a200efcbeec8905a83ade1ad025f5137775f51a8db24902f3cc2b53ee09f025f0029",
-  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820a200efcbeec8905a83ade1ad025f5137775f51a8db24902f3cc2b53ee09f025f0029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"Note: Simple contract to use as base for const vals\\r\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/desktop/fyp/solidity/contracts/Util/Common.sol\":\"CommonConstants\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/desktop/fyp/solidity/contracts/Util/Common.sol\":{\"keccak256\":\"0x5982dbc53c25204f99368558499ff17b5c2777877d726be68b47a78edd52f1f3\",\"urls\":[\"bzzr://636020863d4c1143193655048501922a952ddf92865bd747dbcdaf9f1929c174\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058203fd372632a25c2e5a00d22e4d78ee69d328dd2a57def2f6a5163d0125830bfa80029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a723058203fd372632a25c2e5a00d22e4d78ee69d328dd2a57def2f6a5163d0125830bfa80029",
   "sourceMap": "93:338:19:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;93:338:19;;;;;;;",
   "deployedSourceMap": "93:338:19:-;;;;;",
   "source": "pragma solidity ^0.5.0;\r\n\r\n/**\r\n    Note: Simple contract to use as base for const vals\r\n*/\r\ncontract CommonConstants {\r\n    // bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))\r\n    bytes4 constant internal ERC1155_ACCEPTED = 0xf23a6e61;\r\n    // bytes4(keccak256(\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\"))\r\n    bytes4 constant internal ERC1155_BATCH_ACCEPTED = 0xbc197c81;\r\n}\r\n",
-  "sourcePath": "C:\\Users\\phangjunyu\\Desktop\\fyp\\solidity\\contracts\\Util\\Common.sol",
+  "sourcePath": "C:\\Users\\phangjunyu\\desktop\\fyp\\solidity\\contracts\\Util\\Common.sol",
   "ast": {
-    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/Util/Common.sol",
+    "absolutePath": "/C/Users/phangjunyu/desktop/fyp/solidity/contracts/Util/Common.sol",
     "exportedSymbols": {
       "CommonConstants": [
         3636
@@ -136,7 +136,7 @@
     "src": "0:433:19"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/Util/Common.sol",
+    "absolutePath": "/C/Users/phangjunyu/desktop/fyp/solidity/contracts/Util/Common.sol",
     "exportedSymbols": {
       "CommonConstants": [
         3636
@@ -268,7 +268,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-06T15:29:50.171Z",
+  "updatedAt": "2019-10-07T07:12:16.581Z",
   "devdoc": {
     "methods": {}
   },
