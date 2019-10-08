@@ -6,8 +6,9 @@ import drizzleOptions from "./drizzleOptions";
 
 import Header from "./components/header";
 import Tokens from "./components/tokens";
-import SearchAndCreate from "./components/searchAndCreate";
+import CreateAndUpload from "./components/createAndUpload";
 import TokenInfo from "./components/tokenInfo";
+import Test from "./components/test";
 
 class App extends Component {
   constructor(props) {
@@ -22,8 +23,9 @@ class App extends Component {
           <main className="container">
             <Header />
             <Tokens />
-            <SearchAndCreate />
+            <CreateAndUpload />
             <TokenInfo />
+            <Test />
           </main>
         </LoadingContainer>
       </DrizzleProvider>

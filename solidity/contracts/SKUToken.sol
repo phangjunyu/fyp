@@ -54,6 +54,16 @@ contract SKUToken is ERC1155 {
         }
     }
 
+    function getAccessLevelOfUser(uint256 _id) external view returns (uint8){
+        uint8 permission = accessControlList[_id][msg.sender];
+        if( permission == 0){
+            return 0;
+        } else {
+            return 1;
+        }
+        
+    }
+
     // Creates a new token type and assings _initialSupply to minter
     function create(uint256 _initialSupply, string calldata _uri) external returns(uint256 _id) {
 
@@ -94,6 +104,7 @@ contract SKUToken is ERC1155 {
         emit URI(_uri, _id);
     }
 
+    //refactor into individual permissions for each level
     function setPermissions(uint8 _id, address[] calldata _stakeholders, uint8[] calldata _permissions) external ownerOnly(_id) {
         require(_stakeholders.length == _permissions.length);
         for (uint i = 0; i < _stakeholders.length; i++){

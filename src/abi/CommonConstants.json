@@ -1,25 +1,25 @@
 {
   "contractName": "CommonConstants",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"Note: Simple contract to use as base for const vals\\r\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/desktop/fyp/solidity/contracts/Util/Common.sol\":\"CommonConstants\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/desktop/fyp/solidity/contracts/Util/Common.sol\":{\"keccak256\":\"0x5982dbc53c25204f99368558499ff17b5c2777877d726be68b47a78edd52f1f3\",\"urls\":[\"bzzr://636020863d4c1143193655048501922a952ddf92865bd747dbcdaf9f1929c174\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058203fd372632a25c2e5a00d22e4d78ee69d328dd2a57def2f6a5163d0125830bfa80029",
-  "deployedBytecode": "0x6080604052600080fdfea165627a7a723058203fd372632a25c2e5a00d22e4d78ee69d328dd2a57def2f6a5163d0125830bfa80029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"Note: Simple contract to use as base for const vals\\r\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/Util/Common.sol\":\"CommonConstants\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/Util/Common.sol\":{\"keccak256\":\"0x5982dbc53c25204f99368558499ff17b5c2777877d726be68b47a78edd52f1f3\",\"urls\":[\"bzzr://636020863d4c1143193655048501922a952ddf92865bd747dbcdaf9f1929c174\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820a200efcbeec8905a83ade1ad025f5137775f51a8db24902f3cc2b53ee09f025f0029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820a200efcbeec8905a83ade1ad025f5137775f51a8db24902f3cc2b53ee09f025f0029",
   "sourceMap": "93:338:19:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;93:338:19;;;;;;;",
   "deployedSourceMap": "93:338:19:-;;;;;",
   "source": "pragma solidity ^0.5.0;\r\n\r\n/**\r\n    Note: Simple contract to use as base for const vals\r\n*/\r\ncontract CommonConstants {\r\n    // bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))\r\n    bytes4 constant internal ERC1155_ACCEPTED = 0xf23a6e61;\r\n    // bytes4(keccak256(\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\"))\r\n    bytes4 constant internal ERC1155_BATCH_ACCEPTED = 0xbc197c81;\r\n}\r\n",
-  "sourcePath": "C:\\Users\\phangjunyu\\desktop\\fyp\\solidity\\contracts\\Util\\Common.sol",
+  "sourcePath": "C:\\Users\\phangjunyu\\Desktop\\fyp\\solidity\\contracts\\Util\\Common.sol",
   "ast": {
-    "absolutePath": "/C/Users/phangjunyu/desktop/fyp/solidity/contracts/Util/Common.sol",
+    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/Util/Common.sol",
     "exportedSymbols": {
       "CommonConstants": [
-        3636
+        3663
       ]
     },
-    "id": 3637,
+    "id": 3664,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3629,
+        "id": 3656,
         "literals": [
           "solidity",
           "^",
@@ -35,19 +35,19 @@
         "contractKind": "contract",
         "documentation": "Note: Simple contract to use as base for const vals\r",
         "fullyImplemented": true,
-        "id": 3636,
+        "id": 3663,
         "linearizedBaseContracts": [
-          3636
+          3663
         ],
         "name": "CommonConstants",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 3632,
+            "id": 3659,
             "name": "ERC1155_ACCEPTED",
             "nodeType": "VariableDeclaration",
-            "scope": 3636,
+            "scope": 3663,
             "src": "211:54:19",
             "stateVariable": true,
             "storageLocation": "default",
@@ -56,7 +56,7 @@
               "typeString": "bytes4"
             },
             "typeName": {
-              "id": 3630,
+              "id": 3657,
               "name": "bytes4",
               "nodeType": "ElementaryTypeName",
               "src": "211:6:19",
@@ -68,7 +68,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30786632336136653631",
-              "id": 3631,
+              "id": 3658,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -87,10 +87,10 @@
           },
           {
             "constant": true,
-            "id": 3635,
+            "id": 3662,
             "name": "ERC1155_BATCH_ACCEPTED",
             "nodeType": "VariableDeclaration",
-            "scope": 3636,
+            "scope": 3663,
             "src": "367:60:19",
             "stateVariable": true,
             "storageLocation": "default",
@@ -99,7 +99,7 @@
               "typeString": "bytes4"
             },
             "typeName": {
-              "id": 3633,
+              "id": 3660,
               "name": "bytes4",
               "nodeType": "ElementaryTypeName",
               "src": "367:6:19",
@@ -111,7 +111,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30786263313937633831",
-              "id": 3634,
+              "id": 3661,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -129,24 +129,24 @@
             "visibility": "internal"
           }
         ],
-        "scope": 3637,
+        "scope": 3664,
         "src": "93:338:19"
       }
     ],
     "src": "0:433:19"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/phangjunyu/desktop/fyp/solidity/contracts/Util/Common.sol",
+    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/Util/Common.sol",
     "exportedSymbols": {
       "CommonConstants": [
-        3636
+        3663
       ]
     },
-    "id": 3637,
+    "id": 3664,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3629,
+        "id": 3656,
         "literals": [
           "solidity",
           "^",
@@ -162,19 +162,19 @@
         "contractKind": "contract",
         "documentation": "Note: Simple contract to use as base for const vals\r",
         "fullyImplemented": true,
-        "id": 3636,
+        "id": 3663,
         "linearizedBaseContracts": [
-          3636
+          3663
         ],
         "name": "CommonConstants",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 3632,
+            "id": 3659,
             "name": "ERC1155_ACCEPTED",
             "nodeType": "VariableDeclaration",
-            "scope": 3636,
+            "scope": 3663,
             "src": "211:54:19",
             "stateVariable": true,
             "storageLocation": "default",
@@ -183,7 +183,7 @@
               "typeString": "bytes4"
             },
             "typeName": {
-              "id": 3630,
+              "id": 3657,
               "name": "bytes4",
               "nodeType": "ElementaryTypeName",
               "src": "211:6:19",
@@ -195,7 +195,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30786632336136653631",
-              "id": 3631,
+              "id": 3658,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -214,10 +214,10 @@
           },
           {
             "constant": true,
-            "id": 3635,
+            "id": 3662,
             "name": "ERC1155_BATCH_ACCEPTED",
             "nodeType": "VariableDeclaration",
-            "scope": 3636,
+            "scope": 3663,
             "src": "367:60:19",
             "stateVariable": true,
             "storageLocation": "default",
@@ -226,7 +226,7 @@
               "typeString": "bytes4"
             },
             "typeName": {
-              "id": 3633,
+              "id": 3660,
               "name": "bytes4",
               "nodeType": "ElementaryTypeName",
               "src": "367:6:19",
@@ -238,7 +238,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "30786263313937633831",
-              "id": 3634,
+              "id": 3661,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -256,7 +256,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 3637,
+        "scope": 3664,
         "src": "93:338:19"
       }
     ],
@@ -268,7 +268,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-07T07:12:16.581Z",
+  "updatedAt": "2019-10-08T16:56:03.644Z",
   "devdoc": {
     "methods": {}
   },

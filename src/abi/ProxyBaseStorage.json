@@ -21,15 +21,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"name\":\"delegates\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"////////////////////////////////////////////////////////////////////////////////////////////////\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/desktop/fyp/solidity/contracts/ProxyReceiver/ProxyBaseStorage.sol\":\"ProxyBaseStorage\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/desktop/fyp/solidity/contracts/ProxyReceiver/ProxyBaseStorage.sol\":{\"keccak256\":\"0x9f1b3744393f9e1535eb7243e5afa36654846ac53744aad83b2bbb749fa38719\",\"urls\":[\"bzzr://5551ef2b8f4a16340484ae7cd075573cc3b027b7143d4ed0557757e70976409e\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50610116806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063a0a2daf014602d575b600080fd5b607560048036036020811015604157600080fd5b8101908080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916906020019092919050505060b7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60006020528060005260406000206000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a7230582087c5f3683abd569105156b1b15160157918441e4de71c5f693284e499d8b619e0029",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063a0a2daf014602d575b600080fd5b607560048036036020811015604157600080fd5b8101908080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916906020019092919050505060b7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60006020528060005260406000206000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a7230582087c5f3683abd569105156b1b15160157918441e4de71c5f693284e499d8b619e0029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"name\":\"delegates\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"////////////////////////////////////////////////////////////////////////////////////////////////\"}},\"settings\":{\"compilationTarget\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/ProxyReceiver/ProxyBaseStorage.sol\":\"ProxyBaseStorage\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/ProxyReceiver/ProxyBaseStorage.sol\":{\"keccak256\":\"0x9f1b3744393f9e1535eb7243e5afa36654846ac53744aad83b2bbb749fa38719\",\"urls\":[\"bzzr://5551ef2b8f4a16340484ae7cd075573cc3b027b7143d4ed0557757e70976409e\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610116806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063a0a2daf014602d575b600080fd5b607560048036036020811015604157600080fd5b8101908080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916906020019092919050505060b7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60006020528060005260406000206000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a72305820a7cb5ce5e7ad544261eece820d3e6386883511ec8f44fb2a3656660f5a06cdf30029",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063a0a2daf014602d575b600080fd5b607560048036036020811015604157600080fd5b8101908080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916906020019092919050505060b7565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60006020528060005260406000206000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a72305820a7cb5ce5e7ad544261eece820d3e6386883511ec8f44fb2a3656660f5a06cdf30029",
   "sourceMap": "324:800:14:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;324:800:14;;;;;;;",
   "deployedSourceMap": "324:800:14:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;324:800:14;;;;;;;;;;;;;;;;;;;575:43;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;575:43:14;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
   "source": "pragma solidity ^0.5.0;\r\n\r\n///////////////////////////////////////////////////////////////////////////////////////////////////\r\n/**\r\n * @title ProxyBaseStorage\r\n * @dev Defining base storage for the proxy contract.\r\n */\r\n///////////////////////////////////////////////////////////////////////////////////////////////////\r\n\r\ncontract ProxyBaseStorage {\r\n\r\n    //////////////////////////////////////////// VARS /////////////////////////////////////////////\r\n\r\n    // maps functions to the delegate contracts that execute the functions.\r\n    // funcId => delegate contract\r\n    mapping(bytes4 => address) public delegates;\r\n\r\n    // array of function signatures supported by the contract.\r\n    bytes[] internal funcSignatures;\r\n\r\n    // maps each function signature to its position in the funcSignatures array.\r\n    // signature => index+1\r\n    mapping(bytes => uint256) internal funcSignatureToIndex;\r\n\r\n    // proxy address of itself, can be used for cross-delegate calls but also safety checking.\r\n    address proxy;\r\n\r\n    ///////////////////////////////////////////////////////////////////////////////////////////////\r\n\r\n}\r\n",
-  "sourcePath": "C:\\Users\\phangjunyu\\desktop\\fyp\\solidity\\contracts\\ProxyReceiver\\ProxyBaseStorage.sol",
+  "sourcePath": "C:\\Users\\phangjunyu\\Desktop\\fyp\\solidity\\contracts\\ProxyReceiver\\ProxyBaseStorage.sol",
   "ast": {
-    "absolutePath": "/C/Users/phangjunyu/desktop/fyp/solidity/contracts/ProxyReceiver/ProxyBaseStorage.sol",
+    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/ProxyReceiver/ProxyBaseStorage.sol",
     "exportedSymbols": {
       "ProxyBaseStorage": [
         2571
@@ -224,7 +224,7 @@
     "src": "0:1126:14"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/phangjunyu/desktop/fyp/solidity/contracts/ProxyReceiver/ProxyBaseStorage.sol",
+    "absolutePath": "/C/Users/phangjunyu/Desktop/fyp/solidity/contracts/ProxyReceiver/ProxyBaseStorage.sol",
     "exportedSymbols": {
       "ProxyBaseStorage": [
         2571
@@ -424,7 +424,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-07T07:12:16.543Z",
+  "updatedAt": "2019-10-08T16:56:03.633Z",
   "devdoc": {
     "methods": {}
   },

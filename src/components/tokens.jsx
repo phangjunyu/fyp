@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Card, Statistic, Row, Col, Button, Input } from "antd";
-import {
-  AccountData,
-  ContractData,
-  ContractForm
-} from "@drizzle/react-components";
 import { drizzleConnect } from "@drizzle/react-plugin";
+import PropTypes from "prop-types";
 
 class Tokens extends Component {
-  state = {};
-  render() {
+  constructor(props, context) {
+    super(props);
+    this.state = {};
+    this.contract = context.drizzle.contracts.SKUToken;
     console.log(this.props);
+  }
+  render() {
     return (
       <div style={{ background: "#000000", padding: "30px" }}>
         <Row>
@@ -59,10 +59,16 @@ function changeWeiToEther(amount) {
   return amount / 10 ** 18;
 }
 
+Tokens.contextTypes = {
+  drizzle: PropTypes.object
+};
+
 const mapStateToProps = state => {
   return {
+    SKUToken: state.contracts.SKUToken,
     accounts: state.accounts,
-    accountBalances: state.accountBalances
+    accountBalances: state.accountBalances,
+    drizzleStatus: state.drizzleStatus
   };
 };
 
