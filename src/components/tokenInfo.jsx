@@ -36,37 +36,6 @@ class TokenInfo extends Component {
     super(props);
     this.state = {};
     this.contract = context.drizzle.contracts.SKUToken;
-    const events = this.contract.events;
-
-    events["TransferSingle"]().on("data", event => {
-      const tokenId = event.returnValues._id;
-      const message =
-        event.returnValues._from ===
-        "0x0000000000000000000000000000000000000000"
-          ? `New Token with ID ${tokenId} has been created by ${event.returnValues._to} with initial supply of ${event.returnValues._value}!`
-          : `Transfer of ${event.returnValues._value} worth of Token ${tokenId} from ${event.returnValues._from} to ${event.returnValues._to}`;
-      // Catch duplicate events for same transaction
-      if (this.state[event.event] === tokenId) {
-        return;
-      } else {
-        this.setState({ [event.event]: tokenId });
-        console.log(message);
-        window.alert(message);
-      }
-    });
-
-    events["URI"]().on("data", event => {
-      const tokenId = event.returnValues._id;
-      const message = `URI for token ID: ${tokenId} has been updated to ${event.returnValues._value}!`;
-      // Catch duplicate events for same transaction
-      if (this.state[event.event] === tokenId) {
-        return;
-      } else {
-        this.setState({ [event.event]: tokenId });
-        console.log(message);
-        window.alert(message);
-      }
-    });
   }
   handleInputChange = event => {
     let value = event.target.value;
@@ -76,11 +45,11 @@ class TokenInfo extends Component {
   handleSearch = event => {
     console.log("Search ", event);
     const method = this.contract.methods.getAccessLevelOfUser;
-    let dataKey = method.cacheCall(BigNumber(this.state["searchTokenId"]), {
+    // Declare this call to be cached and synchronized. We'll receive the store key for recall.
+    const dataKey = method.cacheCall(this.state["searchTokenId"], {
       from: this.props.account
     });
-    //you should set state here after checking for instance
-    // const result = this.props.SKUToken.getAccessLevelOfUser[dataKey].value;
+    this.setState({ dataKey });
   };
 
   onTabChange = (key, type) => {
@@ -89,9 +58,32 @@ class TokenInfo extends Component {
   };
 
   render() {
+    if (!(this.state["dataKey"] in this.props.SKUToken.getAccessLevelOfUser)) {
+      return (
+        <div style={{ background: "#FFFFFF", padding: "30px" }}>
+          <Card>
+            <Card title="Search Token" bordered={false}>
+              <Search
+                placeholder="Enter Token ID"
+                enterButton
+                size="small"
+                name="searchTokenId"
+                onChange={this.handleInputChange}
+                onSearch={this.handleSearch}
+              />
+            </Card>
+            <Card>Loading...</Card>
+          </Card>
+        </div>
+      );
+    }
+    var permission = this.props.SKUToken.getAccessLevelOfUser[
+      this.state["dataKey"]
+    ].value;
     return (
       <div style={{ background: "#FFFFFF", padding: "30px" }}>
         <Card>
+          <h3>{permission}</h3>
           <Card title="Search Token" bordered={false}>
             <Search
               placeholder="Enter Token ID"

@@ -34,8 +34,41 @@ const uploadProps = {
 class CreateAndUpload extends Component {
   constructor(props, context) {
     super(props);
+    this.state = {};
     this.contract = context.drizzle.contracts.SKUToken;
+    const events = this.contract.events;
+
+    events["TransferSingle"]().on("data", event => {
+      const tokenId = event.returnValues._id;
+      const message =
+        event.returnValues._from ===
+        "0x0000000000000000000000000000000000000000"
+          ? `New Token with ID ${tokenId} has been created by ${event.returnValues._to} with initial supply of ${event.returnValues._value}!`
+          : `Transfer of ${event.returnValues._value} worth of Token ${tokenId} from ${event.returnValues._from} to ${event.returnValues._to}`;
+      // Catch duplicate events for same transaction
+      if (this.state[event.event] === tokenId) {
+        return;
+      } else {
+        this.setState({ [event.event]: tokenId });
+        console.log(message);
+        window.alert(message);
+      }
+    });
+
+    events["URI"]().on("data", event => {
+      const tokenId = event.returnValues._id;
+      const message = `URI for token ID: ${tokenId} has been updated to ${event.returnValues._value}!`;
+      // Catch duplicate events for same transaction
+      if (this.state[event.event] === tokenId) {
+        return;
+      } else {
+        this.setState({ [event.event]: tokenId });
+        console.log(message);
+        window.alert(message);
+      }
+    });
   }
+
   handleInputChange = event => {
     let value = event.target.value;
     this.setState({ [event.target.name]: value });
