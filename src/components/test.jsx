@@ -7,22 +7,31 @@ class Test extends Component {
   constructor(props, context) {
     super(props);
     this.contracts = context.drizzle.contracts;
-    console.log(this.props.accounts[0]);
-    this.dataKey = this.contracts.SKUToken.methods.getAccessLevelOfUser.cacheCall(
-      ...Object.values([1]),
-      { from: this.props.accounts[0] }
-    );
+    this.state = {
+      vara: "some variable a"
+    };
   }
+
+  randomFunction = () => {
+    this.setState({
+      vara: "new variable a"
+    });
+    console.log("Random", this);
+    this.anotherFunction();
+  };
+
+  anotherFunction = () => {
+    console.log("another", this);
+  };
+
   render() {
-    // If the data isn't here yet, show loading
-    if (!(this.dataKey in this.props.SKUToken.getAccessLevelOfUser)) {
-      return <span>Loading...</span>;
-    }
-
-    // If the data is here, get it and display it
-    var data = this.props.SKUToken.getAccessLevelOfUser[this.dataKey].value;
-
-    return <div>{data}</div>;
+    console.log("var a", this.state.vara);
+    return (
+      <div>
+        <h5>{this.state.vara}</h5>
+        <button onClick={this.randomFunction}>click this</button>
+      </div>
+    );
   }
 }
 

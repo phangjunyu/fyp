@@ -25,7 +25,7 @@ class App extends Component {
             <Tokens />
             <CreateAndUpload />
             <TokenInfo />
-            <Test />
+            {/* <Test /> */}
           </main>
         </LoadingContainer>
       </DrizzleProvider>

@@ -1,40 +1,19 @@
 import React, { Component } from "react";
-import { Card, Input } from "antd";
+import { Card, Input, Tabs, Skeleton, Switch, Icon } from "antd";
+import EditACL from "./editACL";
 import { drizzleConnect } from "@drizzle/react-plugin";
 import PropTypes from "prop-types";
-import BigNumber from "bignumber.js";
 
+const { TabPane } = Tabs;
 const { Search } = Input;
-const tabList = [
-  {
-    key: "tab1",
-    tab: "View Information"
-  },
-  {
-    key: "tab2",
-    tab: "Update URI"
-  },
-  {
-    key: "tab3",
-    tab: "Edit Access Control"
-  },
-  {
-    key: "tab4",
-    tab: "Mint Tokens"
-  }
-];
-
-const contentList = {
-  tab1: <Card style={{ minHeight: "25vh" }}>content1</Card>,
-  tab2: <Card style={{ minHeight: "25vh" }}>content2</Card>,
-  tab3: <Card style={{ minHeight: "25vh" }}>content3</Card>,
-  tab4: <Card style={{ minHeight: "25vh" }}>content4</Card>
-};
 
 class TokenInfo extends Component {
   constructor(props, context) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: true,
+      tabs: [false, false, false, false]
+    };
     this.contract = context.drizzle.contracts.SKUToken;
   }
   handleInputChange = event => {
@@ -50,6 +29,7 @@ class TokenInfo extends Component {
       from: this.props.account
     });
     this.setState({ dataKey });
+    this.setState({ loading: true });
   };
 
   onTabChange = (key, type) => {
@@ -57,33 +37,151 @@ class TokenInfo extends Component {
     this.setState({ [type]: key });
   };
 
-  render() {
-    if (!(this.state["dataKey"] in this.props.SKUToken.getAccessLevelOfUser)) {
+  handleOnLoad = checked => {
+    var permission = this.props.SKUToken.getAccessLevelOfUser[
+      this.state.dataKey
+    ].value;
+    this.setState({ permission: permission });
+    if (permission == 0) {
+      alert("you don't have permission to view this Token!");
+      return;
+    }
+    this.setState({ loading: !checked });
+    console.log("state", this.state);
+    console.log("var permission", permission);
+    console.log("state permission", this.state.permission);
+    switch (this.state.permission) {
+      case "0":
+        console.log("case 0");
+        this.setState({
+          tabs: this.state.tabs.map((item, index) =>
+            index >= 0 ? (item = false) : (item = false)
+          ),
+          access: "No Access"
+        });
+        break;
+      case "1":
+        console.log("case 1");
+        this.setState({
+          tabs: this.state.tabs.map((item, index) =>
+            index >= 1 ? (item = true) : (item = false)
+          ),
+          access: "Read"
+        });
+        break;
+      case "2":
+        console.log("case 2");
+        this.setState({
+          tabs: this.state.tabs.map((item, index) =>
+            index >= 2 ? (item = true) : (item = false)
+          ),
+          access: "Write"
+        });
+        break;
+      case "4":
+        console.log("case 4");
+        this.setState({
+          tabs: this.state.tabs.map((item, index) =>
+            index >= 3 ? (item = true) : (item = false)
+          ),
+          access: "Edit ACL"
+        });
+        break;
+      case "8":
+        console.log("case 8");
+        this.setState({
+          tabs: this.state.tabs.map((item, index) =>
+            index >= 4 ? (item = true) : (item = false)
+          ),
+          access: "Creator"
+        });
+        break;
+      default:
+        console.log("default");
+        break;
+    }
+  };
+
+  renderLoading = () => {
+    const { loading } = this.state;
+    if (!(this.state.dataKey in this.props.SKUToken.getAccessLevelOfUser)) {
+      return;
+    } else {
+      console.log("props", this.props.SKUToken);
       return (
-        <div style={{ background: "#FFFFFF", padding: "30px" }}>
-          <Card>
-            <Card title="Search Token" bordered={false}>
-              <Search
-                placeholder="Enter Token ID"
-                enterButton
-                size="small"
-                name="searchTokenId"
-                onChange={this.handleInputChange}
-                onSearch={this.handleSearch}
-              />
-            </Card>
-            <Card>Loading...</Card>
-          </Card>
+        <div style={{ textAlign: "center" }}>
+          <Switch
+            checked={!loading}
+            onChange={this.handleOnLoad}
+            checkedChildren={<Icon type="check" />}
+            unCheckedChildren={<Icon type="close" />}
+          ></Switch>
+          <Skeleton loading={loading} active>
+            {this.renderPermissionedInfo()}
+          </Skeleton>
         </div>
       );
     }
-    var permission = this.props.SKUToken.getAccessLevelOfUser[
-      this.state["dataKey"]
-    ].value;
+  };
+
+  handleView() {}
+
+  handleUpdate() {}
+
+  handleEditACL() {}
+  handleMint() {}
+
+  renderPermissionedInfo = () => {
+    return (
+      <Card
+        style={{ width: "100%", margin: "20px 0px" }}
+        title={`${this.state.access} Permission for Token ID: ${this.state.searchTokenId}`}
+      >
+        <Tabs>
+          <TabPane
+            tab="View Metadata"
+            disabled={this.state.tabs[0]}
+            key="1"
+            onTabClick={this.handleView}
+          >
+            Tab 1
+          </TabPane>
+          <TabPane
+            tab="Update Metadata"
+            disabled={this.state.tabs[1]}
+            key="2"
+            onTabClick={this.handleUpdate}
+          >
+            Tab 2
+          </TabPane>
+          <TabPane
+            tab="Edit Access Control"
+            disabled={this.state.tabs[2]}
+            key="3"
+            onTabClick={this.handleEditACL}
+          >
+            <EditACL
+              permission={this.state.permission}
+              tokenId={this.state.searchTokenId}
+            />
+          </TabPane>
+          <TabPane
+            tab="Mint Tokens"
+            disabled={this.state.tabs[3]}
+            key="4"
+            onTabClick={this.handleMint}
+          >
+            Tab 4
+          </TabPane>
+        </Tabs>
+      </Card>
+    );
+  };
+
+  render() {
     return (
       <div style={{ background: "#FFFFFF", padding: "30px" }}>
         <Card>
-          <h3>{permission}</h3>
           <Card title="Search Token" bordered={false}>
             <Search
               placeholder="Enter Token ID"
@@ -94,17 +192,7 @@ class TokenInfo extends Component {
               onSearch={this.handleSearch}
             />
           </Card>
-          <Card
-            style={{ width: "100%" }}
-            title="Token Information"
-            tabList={tabList}
-            // activeTabKey={this.state.key}
-            onTabChange={key => {
-              this.onTabChange(key, "key");
-            }}
-          >
-            {contentList[this.state.key]}
-          </Card>
+          {this.renderLoading()}
         </Card>
       </div>
     );
