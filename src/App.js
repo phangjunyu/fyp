@@ -20,13 +20,11 @@ class App extends Component {
     return (
       <DrizzleProvider options={drizzleOptions}>
         <LoadingContainer>
-          <main className="container">
-            <Header />
-            <Tokens />
-            <CreateAndUpload />
-            <TokenInfo />
-            {/* <Test /> */}
-          </main>
+          <Header />
+          <Tokens />
+          <CreateAndUpload />
+          <TokenInfo />
+          {/* <Test /> */}
         </LoadingContainer>
       </DrizzleProvider>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Input, Tabs, Skeleton, Switch, Icon } from "antd";
-import EditACL from "./editACL";
+import EditACL from "./tokenInfoComponents/editACL";
 import { drizzleConnect } from "@drizzle/react-plugin";
 import PropTypes from "prop-types";
 
