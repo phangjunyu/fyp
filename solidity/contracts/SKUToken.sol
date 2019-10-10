@@ -14,7 +14,7 @@ contract SKUToken is ERC1155 {
 
     using Bits for uint8;
 
-    event PermissionSet(uint256 _id, address _stakeholders, uint8 _permissions);
+    event PermissionSet(uint256 _id, address _updateeAddress, uint8 _permission);
 
     //8 - 1000
     modifier creatorOnly (uint256 _id) {
@@ -104,12 +104,11 @@ contract SKUToken is ERC1155 {
         emit URI(_uri, _id);
     }
 
-    //refactor into individual permissions for each level
-    function setPermissions(uint8 _id, address[] calldata _stakeholders, uint8[] calldata _permissions) external ownerOnly(_id) {
-        require(_stakeholders.length == _permissions.length);
-        for (uint i = 0; i < _stakeholders.length; i++){
-            accessControlList[_id][_stakeholders[i]] = _permissions[i];
-            emit PermissionSet(_id, _stakeholders[i], _permissions[i]);
-        }
+    
+    function setPermission(uint8 _id, address _account, uint8 _permission) external ownerOnly(_id) {
+            require(_permission == 1 || _permission == 2 || _permission == 4 || _permission == 8);
+            accessControlList[_id][_account] = _permission;
+            emit PermissionSet(_id, _account, _permission);
+        
     } 
 }

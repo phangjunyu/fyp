@@ -3,6 +3,8 @@ import { Card, Statistic, Row, Col, Button, Input } from "antd";
 import { drizzleConnect } from "@drizzle/react-plugin";
 import PropTypes from "prop-types";
 
+//TODO: display tokens owned
+
 class Tokens extends Component {
   constructor(props, context) {
     super(props);

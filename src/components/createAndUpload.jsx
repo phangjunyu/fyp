@@ -1,35 +1,8 @@
 import React, { Component } from "react";
-import {
-  Card,
-  Row,
-  Col,
-  Input,
-  Form,
-  Button,
-  Upload,
-  message,
-  Icon
-} from "antd";
+import { Card, Row, Col, Input, Form, Button } from "antd";
 import { drizzleConnect } from "@drizzle/react-plugin";
 import PropTypes from "prop-types";
-
-const uploadProps = {
-  name: "file",
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  headers: {
-    authorization: "authorization-text"
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  }
-};
+import UploadIPFS from "./uploadIPFS";
 
 class CreateAndUpload extends Component {
   constructor(props, context) {
@@ -79,7 +52,7 @@ class CreateAndUpload extends Component {
     // const supply = event.target[0].value;
     // const uri = event.target[1].value;
     const method = this.contract.methods.create;
-    method.cacheSend(...Object.values(this.state), {
+    method.cacheSend(...[this.state._initialSupply, this.state._uri], {
       from: this.props.account
     });
     // clear inputs after submission
@@ -150,15 +123,7 @@ class CreateAndUpload extends Component {
             </Card>
           </Col>
           <Col span={12}>
-            <Col>
-              <Card title="Upload IPFS JSON File" bordered={false}>
-                <Upload {...uploadProps}>
-                  <Button>
-                    <Icon type="upload" /> Click to Upload
-                  </Button>
-                </Upload>
-              </Card>
-            </Col>
+            <UploadIPFS />
           </Col>
         </Row>
       </div>

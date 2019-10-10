@@ -12,7 +12,7 @@ class TokenInfo extends Component {
     super(props);
     this.state = {
       loading: true,
-      tabs: [false, false, false, false]
+      tabs: [true, true, true, true]
     };
     this.contract = context.drizzle.contracts.SKUToken;
   }
@@ -37,69 +37,50 @@ class TokenInfo extends Component {
     this.setState({ [type]: key });
   };
 
-  handleOnLoad = checked => {
+  onSwitchChange = checked => {
     var permission = this.props.SKUToken.getAccessLevelOfUser[
       this.state.dataKey
     ].value;
-    this.setState({ permission: permission });
-    if (permission == 0) {
-      alert("you don't have permission to view this Token!");
-      return;
-    }
-    this.setState({ loading: !checked });
-    console.log("state", this.state);
-    console.log("var permission", permission);
-    console.log("state permission", this.state.permission);
-    switch (this.state.permission) {
-      case "0":
-        console.log("case 0");
-        this.setState({
-          tabs: this.state.tabs.map((item, index) =>
-            index >= 0 ? (item = false) : (item = false)
-          ),
-          access: "No Access"
-        });
-        break;
+    this.setState({ permission, loading: !checked });
+    switch (permission) {
       case "1":
         console.log("case 1");
         this.setState({
-          tabs: this.state.tabs.map((item, index) =>
-            index >= 1 ? (item = true) : (item = false)
-          ),
+          tabs: [false, true, true, true],
           access: "Read"
         });
         break;
       case "2":
         console.log("case 2");
         this.setState({
-          tabs: this.state.tabs.map((item, index) =>
-            index >= 2 ? (item = true) : (item = false)
-          ),
+          tabs: [false, false, true, true],
           access: "Write"
         });
         break;
       case "4":
         console.log("case 4");
         this.setState({
-          tabs: this.state.tabs.map((item, index) =>
-            index >= 3 ? (item = true) : (item = false)
-          ),
+          tabs: [false, false, false, true],
           access: "Edit ACL"
         });
         break;
       case "8":
         console.log("case 8");
         this.setState({
-          tabs: this.state.tabs.map((item, index) =>
-            index >= 4 ? (item = true) : (item = false)
-          ),
+          tabs: [false, false, false, false],
           access: "Creator"
         });
         break;
       default:
-        console.log("default");
+        alert("you don't have permission to view this Token!");
+        this.setState({
+          tabs: [true, true, true, true],
+          access: "No Access",
+          loading: true
+        });
         break;
     }
+    return;
   };
 
   renderLoading = () => {
@@ -107,12 +88,11 @@ class TokenInfo extends Component {
     if (!(this.state.dataKey in this.props.SKUToken.getAccessLevelOfUser)) {
       return;
     } else {
-      console.log("props", this.props.SKUToken);
       return (
         <div style={{ textAlign: "center" }}>
           <Switch
             checked={!loading}
-            onChange={this.handleOnLoad}
+            onChange={this.onSwitchChange}
             checkedChildren={<Icon type="check" />}
             unCheckedChildren={<Icon type="close" />}
           ></Switch>
@@ -133,10 +113,12 @@ class TokenInfo extends Component {
 
   renderPermissionedInfo = () => {
     return (
-      <Card
-        style={{ width: "100%", margin: "20px 0px" }}
-        title={`${this.state.access} Permission for Token ID: ${this.state.searchTokenId}`}
-      >
+      <Card style={{ width: "100%", margin: "20px 0px" }}>
+        <p style={{ fontWeight: "bold" }}>
+          Token ID: {this.state.searchTokenId}
+          <br />
+          Permission Level: {this.state.access}
+        </p>
         <Tabs>
           <TabPane
             tab="View Metadata"
