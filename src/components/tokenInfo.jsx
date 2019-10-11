@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, Input, Tabs, Skeleton, Switch, Icon } from "antd";
 import EditACL from "./tokenInfoComponents/editACL";
+import ViewMetadata from "./tokenInfoComponents/viewMetadata";
 import { drizzleConnect } from "@drizzle/react-plugin";
 import PropTypes from "prop-types";
 
@@ -25,7 +26,7 @@ class TokenInfo extends Component {
     console.log("Search ", event);
     const method = this.contract.methods.getAccessLevelOfUser;
     // Declare this call to be cached and synchronized. We'll receive the store key for recall.
-    const dataKey = method.cacheCall(this.state["searchTokenId"], {
+    const dataKey = method.cacheCall(this.state.searchTokenId, {
       from: this.props.account
     });
     this.setState({ dataKey });
@@ -113,7 +114,7 @@ class TokenInfo extends Component {
 
   renderPermissionedInfo = () => {
     return (
-      <Card style={{ width: "100%", margin: "20px 0px" }}>
+      <Card style={{ width: "100%", margin: "20px 0px", minHeight: "400px" }}>
         <p style={{ fontWeight: "bold" }}>
           Token ID: {this.state.searchTokenId}
           <br />
@@ -126,7 +127,7 @@ class TokenInfo extends Component {
             key="1"
             onTabClick={this.handleView}
           >
-            Tab 1
+            <ViewMetadata searchTokenId={this.state.searchTokenId} />
           </TabPane>
           <TabPane
             tab="Update Metadata"
