@@ -106,7 +106,7 @@ class CreateAndUpload extends Component {
                   <Input
                     name="_uri"
                     onChange={this.handleInputChange}
-                    placeholder="IPFS URI to JSON Metadata"
+                    placeholder="IPFS Hash of JSON Metadata"
                     value={this.state == null ? "" : this.state["_uri"]}
                   />
                 </Form.Item>
