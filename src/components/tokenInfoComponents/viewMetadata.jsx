@@ -60,7 +60,6 @@ class ViewMetadata extends Component {
     }`;
     const loadingIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
     if (this.state.currentMetadata == "loading...") {
-      console.log("LOADING HERE");
       return <Spin indicator={loadingIcon} />;
     } else {
       return (

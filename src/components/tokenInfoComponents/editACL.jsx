@@ -17,16 +17,16 @@ class EditACL extends Component {
       const tokenId = event.returnValues._id;
       var permission;
       switch (event.returnValues._permission) {
-        case 1:
+        case "1":
           permission = "Read Data";
           break;
-        case 2:
+        case "2":
           permission = "Update Data";
           break;
-        case 4:
+        case "4":
           permission = "Owner Access Control";
           break;
-        case 8:
+        case "8":
           permission = "Creator";
           break;
         default:
@@ -58,9 +58,16 @@ class EditACL extends Component {
 
   handleUpdateAccess = e => {
     const method = this.contract.methods.setPermission;
-    method.cacheSend(...Object.values(this.state), {
-      from: this.props.accounts[0]
-    });
+    method.cacheSend(
+      ...[
+        this.state.tokenId,
+        this.state.updateeAddress,
+        this.state.accessLevel
+      ],
+      {
+        from: this.props.accounts[0]
+      }
+    );
     // clear inputs after submission
     const inputs = Object.keys(this.state);
     const freshState = inputs.reduce((res, input) => {

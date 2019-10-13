@@ -9925,12 +9925,12 @@
             },
             {
               "indexed": false,
-              "name": "_stakeholders",
+              "name": "_updateeAddress",
               "type": "address"
             },
             {
               "indexed": false,
-              "name": "_permissions",
+              "name": "_permission",
               "type": "uint8"
             }
           ],
@@ -10047,12 +10047,12 @@
         }
       },
       "links": {},
-      "address": "0x76d2Beb5304317565614793402c723b42508f1A6",
-      "transactionHash": "0x7a1ea44dc968480f7e46a8794477b610480993145be0cc7612b96f4631611ff8"
+      "address": "0x136e8CDcB7787b9eaf702a4c3c1FD428cD42E6f9",
+      "transactionHash": "0x32d684c95d21c9c02abfd15b8c48ca317a5a536cfe8036b7917ff8d6fe614ff2"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-10T06:05:30.356Z",
+  "updatedAt": "2019-10-13T12:25:11.701Z",
   "devdoc": {
     "methods": {
       "balanceOf(address,uint256)": {
