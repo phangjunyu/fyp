@@ -16,6 +16,10 @@ class App extends Component {
     this.state = {};
   }
 
+  // TODO: Implement OpenPGPJS
+  // Add in Tokens tracking
+  // Set up GetPastEvents for Transfers to track current owner of Token
+
   render() {
     return (
       <DrizzleProvider options={drizzleOptions}>

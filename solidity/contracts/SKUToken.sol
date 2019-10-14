@@ -2,6 +2,9 @@ pragma solidity ^0.5.3;
 import "./ERC1155.sol";
 import {Bits} from  "./Util/Bits.sol";
 
+//TODOS: Implement Permissions with Transfer Functions
+// Change the Create Function to be MixedFungibleMintable
+
 /* 
 A Token is created for every SKU. The supply can be equals to the production/order amount. Every time a shipment is sent out, mint a new token. 
 This contract is an edited duplicate of ERC1155Mintable.sol
