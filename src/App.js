@@ -6,7 +6,7 @@ import drizzleOptions from "./drizzleOptions";
 
 import Header from "./components/header";
 import Tokens from "./components/tokens";
-import CreateAndUpload from "./components/createAndUpload";
+import CreateToken from "./components/createToken";
 import TokenInfo from "./components/tokenInfo";
 import Test from "./components/test";
 
@@ -27,7 +27,7 @@ class App extends Component {
           <main className="Container">
             <Header />
             <Tokens />
-            <CreateAndUpload />
+            <CreateToken />
             <TokenInfo />
             {/* <Test /> */}
           </main>

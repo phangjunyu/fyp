@@ -17,26 +17,23 @@ contract SKUToken is ERC1155 {
 
     using Bits for uint8;
 
-    event PermissionSet(uint256 _id, address _updateeAddress, uint8 _permission);
+    event PermissionSet(uint256 _id, address indexed _updateeAddress, uint8 _permission);
 
     //8 - 1000
     modifier creatorOnly (uint256 _id) {
         require(accessControlList[_id][msg.sender].highestBitSet() >= 3);
         _;
     }
-
     //4 - 100
     modifier ownerOnly (uint256 _id) {
         require(accessControlList[_id][msg.sender].highestBitSet() >= 2);
         _;
     }
-
     //2 - 10
     modifier writeOnly (uint256 _id) {
         require(accessControlList[_id][msg.sender].highestBitSet() >= 1);
         _;
     }
-
     //1 - 1
     modifier readOnly (uint256 _id) {
         require(accessControlList[_id][msg.sender].highestBitSet() >= 0);

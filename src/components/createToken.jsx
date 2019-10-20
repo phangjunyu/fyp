@@ -4,7 +4,7 @@ import { drizzleConnect } from "@drizzle/react-plugin";
 import PropTypes from "prop-types";
 import UploadIPFS from "./uploadIPFS";
 
-class CreateAndUpload extends Component {
+class CreateToken extends Component {
   constructor(props, context) {
     super(props);
     this.state = {};
@@ -78,8 +78,8 @@ class CreateAndUpload extends Component {
                 layout="horizontal"
                 style={{ backgroundColor: "white" }}
               >
-                <Form.Item
-                  label="Initial Supply"
+                {/* <Form.Item
+                  label="Type"
                   {...{
                     labelCol: { span: 6 },
                     wrapperCol: { span: 14 }
@@ -94,7 +94,8 @@ class CreateAndUpload extends Component {
                       this.state == null ? "" : this.state["_initialSupply"]
                     }
                   />
-                </Form.Item>
+                </Form.Item> */}
+                {/* TOOD: set function call to automatically be NFT type */}
                 <Form.Item
                   label="URI"
                   {...{
@@ -131,7 +132,7 @@ class CreateAndUpload extends Component {
   }
 }
 
-CreateAndUpload.contextTypes = {
+CreateToken.contextTypes = {
   drizzle: PropTypes.object
 };
 
@@ -144,4 +145,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default drizzleConnect(CreateAndUpload, mapStateToProps);
+export default drizzleConnect(CreateToken, mapStateToProps);
