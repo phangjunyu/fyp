@@ -52,7 +52,7 @@ class CreateToken extends Component {
     // const supply = event.target[0].value;
     // const uri = event.target[1].value;
     const method = this.contract.methods.create;
-    method.cacheSend(...[this.state._initialSupply, this.state._uri], {
+    method.cacheSend(...[1, this.state._uri], {
       from: this.props.account
     });
     // clear inputs after submission
@@ -111,7 +111,7 @@ class CreateToken extends Component {
                     value={this.state == null ? "" : this.state["_uri"]}
                   />
                 </Form.Item>
-                <Form.Item style={{ margin: "0px" }}>
+                <Form.Item style={{ margin: "0px", textAlign: "center" }}>
                   <Button
                     style={{ backgroundColor: "green" }}
                     type="primary"
